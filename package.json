@@ -40,6 +40,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-typescript": "^7.22.15",
+    "@types/uuid": "^9.0.3",
     "eslint": "8.22",
     "sass": "^1.66.1"
   }

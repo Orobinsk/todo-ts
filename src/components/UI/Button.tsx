@@ -1,10 +1,16 @@
-import style from './Button.module.scss'
+import cls from './Button.module.scss'
+import {ButtonHTMLAttributes, FC, ReactNode} from "react";
 
-function Button(props:any) {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+    children: ReactNode,
+    disabled?:boolean,
+}
+
+const Button:FC<ButtonProps>=(props)=> {
     const { children, disabled = false} =props
     return <button
         {...props}
-        className={style.button}
+        className={cls.button}
         disabled={disabled}
     >
         {children}

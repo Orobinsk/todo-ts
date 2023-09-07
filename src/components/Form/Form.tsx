@@ -15,20 +15,17 @@ const {addItem}=props
         setNameTodo('')
     }
     return (
-        <div className={cls.container}>
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={onSubmitHandler} className={cls.Form}>
                 <input
                     placeholder='Enter new todo'
                     value={nameTodo}
                     onChange={(e) =>setNameTodo(e.target.value)}
                 />
                 <Button
-                    type="Submit"
-                    title="Submit"
+                    title="add new todo"
                 >Submit
                 </Button>
             </form>
-        </div>
     );
 };
 

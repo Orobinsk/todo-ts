@@ -1,9 +1,18 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from "./App";
+import {fireEvent, render, screen} from "@testing-library/react";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+describe('App', () => {
+    test('should add a new todo item when addItemHandler is called', () => {
+        render(<App />);
+
+        const inputElement = screen.getByPlaceholderText('Enter new todo');
+        const addButton = screen.getByText('Submit');
+
+        fireEvent.change(inputElement, { target: { value: 'Test Todo' } });
+        fireEvent.click(addButton);
+
+        const todoItem = screen.getByText('Test Todo');
+        expect(todoItem).toBeInTheDocument();
+    });
 });
