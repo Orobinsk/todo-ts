@@ -2,30 +2,34 @@ import React, {FC, FormEventHandler, useState} from 'react';
 import Button from "../UI/Button";
 import cls from './Form.module.scss'
 
-interface FormProps{
-    addItem:any
+interface FormProps {
+    addItem: (nameTodo: string) => void
 }
 
-const Form:FC<FormProps> = (props) => {
-const {addItem}=props
+const Form: FC<FormProps> = ({addItem}) => {
+
     const [nameTodo, setNameTodo] = useState('')
-    const onSubmitHandler:FormEventHandler<HTMLFormElement> = (event) => {
+    const onSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
-         addItem(nameTodo)
+        addItem(nameTodo)
         setNameTodo('')
     }
     return (
-            <form onSubmit={onSubmitHandler} className={cls.Form}>
-                <input
-                    placeholder='Enter new todo'
-                    value={nameTodo}
-                    onChange={(e) =>setNameTodo(e.target.value)}
-                />
-                <Button
-                    title="add new todo"
-                >Submit
-                </Button>
-            </form>
+        <form onSubmit={onSubmitHandler} className={cls.Form}>
+            <input
+                className={cls.inputText}
+                placeholder='What needs to be done?'
+                value={nameTodo}
+                onChange={(e) => setNameTodo(e.target.value)}
+            />
+            <Button
+                data-testid={"add new todo btn"}
+                className={cls.btn}
+                title="add new todo"
+            >
+                <i className="fa-solid fa-check"></i>
+            </Button>
+        </form>
     );
 };
 

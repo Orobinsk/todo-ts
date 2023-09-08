@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {FC} from 'react';
 import {todo} from "../../types/types";
-import cls from './List.module.scss'
 import Item from "../Item/Item";
+import cls from './List.module.scss'
 
-const TodoList = ({todos, deleteTodo, toggleTodo}:any) => {
+
+interface TodoList{
+    todos:todo[],
+    deleteTodo:(id: string)=>void,
+    toggleTodo:(id: string)=>void
+}
+
+const TodoList:FC<TodoList> = ({todos, deleteTodo, toggleTodo}) => {
 
     return(
         <div>
-            {!todos.length && <h2>Todo list is empty</h2>}
+            {!todos.length && <h3 className={cls.emptyText}>list is empty</h3>}
             {todos.map((todo:todo) =>
                 (<Item
                     deleteTodo={deleteTodo}

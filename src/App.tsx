@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import './App.css';
+import './App.module.scss';
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
 import {todo} from "./types/types";
-import ButtonsActions from "./components/Actions/ButtonsActions";
 import {useTodos} from "./components/hooks/useTodos";
-import Button from "./components/UI/Button";
+import cls from './App.module.scss'
+import FooterBar from "./components/FooterBar/FooterBar";
 
 
 function App() {
@@ -40,36 +40,23 @@ function App() {
     const completedTodosCount = todos.filter((todo) => todo.isCompleted).length
 
     return (
-        <div className="App">
-            <h1>ToDo App</h1>
-            <Form addItem={addItemHandler}/>
-            {todos.length > 0 ? (
-                <ButtonsActions
-                    completedTodosExist={!!completedTodosCount}
-                    resetTodos={() => setTodos([])}
-                    deleteCompletedTodos={() => setTodos(todos.filter((todo) => !todo.isCompleted))}
-                />) : null}
-
-            {todos.length > 0 ? (
-                <ButtonsActions
-                    completedTodosExist={!!completedTodosCount}
-                    resetTodos={() => setTodos([])}
-                    deleteCompletedTodos={() => setTodos(todos.filter((todo) => !todo.isCompleted))}
-                />) : null}
-            <List
-                todos={sortedTodos}
-                deleteTodo={deleteTodoHandler}
-                toggleTodo={toggleTodoHandler}
-            />
-            <Button onClick={() => setFilter('')}>all</Button>
-            <Button onClick={() => setFilter('active')}>active</Button>
-            <Button onClick={() => setFilter('completed')}>completed</Button>
-            {completedTodosCount > 0 &&
-                <h2>
-                    {`You have completed ${completedTodosCount} ${
-                        completedTodosCount > 1 ? 'todos' : 'todo'
-                    }`}
-                </h2>}
+        <div className={cls.App}>
+            <h1 className={cls.title}>todos</h1>
+            <div className={cls.itemsBody}>
+                <Form addItem={addItemHandler}/>
+                <List
+                    todos={sortedTodos}
+                    deleteTodo={deleteTodoHandler}
+                    toggleTodo={toggleTodoHandler}
+                />
+                <FooterBar
+                    completedTodosCount={completedTodosCount}
+                    filtering={(filter)=>setFilter(filter)}
+                    clearCompleted={() => setTodos(todos.filter((todo) => !todo.isCompleted))}
+                />
+            </div>
+            <div className={cls.back1}></div>
+            <div className={cls.back2}></div>
         </div>
     );
 }

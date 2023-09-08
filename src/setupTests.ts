@@ -8,6 +8,6 @@ const crypto = require('crypto');
 
 Object.defineProperty(globalThis, 'crypto', {
     value: {
-        randomUUID:  () => '123456789'
+        randomUUID:  () => crypto.randomUUID()
     }
 });
