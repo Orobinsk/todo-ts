@@ -1,4 +1,4 @@
-import {todo} from "../../types/types";
+import {todo} from "../types/types";
 import {useMemo} from "react";
 
 

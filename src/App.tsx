@@ -3,7 +3,7 @@ import './App.module.scss';
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
 import {todo} from "./types/types";
-import {useTodos} from "./components/hooks/useTodos";
+import {useTodos} from "./hooks/useTodos";
 import cls from './App.module.scss'
 import FooterBar from "./components/FooterBar/FooterBar";
 
